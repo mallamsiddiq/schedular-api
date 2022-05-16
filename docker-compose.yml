@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py loaddata data/dumpdata.json && python manage.py runserver 0.0.0.0:8000"
+    container_name: schedularqualis
+    volumes:
+      - .:/schedularqualis
+    ports:
+      - "8000:8000"
+
+
+  test:
+    build: .
+    command: bash -c "python manage.py test api"
+    volumes:
+      - .:/schedularqualis/test
+    ports:
+      - "7000:7000"

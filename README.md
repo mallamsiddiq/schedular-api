@@ -1,8 +1,8 @@
 
 
-#Documentation on the app 
+# Documentation on the app 
 
-##Overview 
+## Overview 
 This is a little app that takes your input of meeting time range and check simply check against the google support holidays in your provided country and returns all non clashing provided time slots.
 
 
@@ -28,7 +28,7 @@ Kindly note the double quotes:
 
 If you have many requests kindly wrapp in square brackets [] with comma separated. I have told this little boy to catch several types of inputs you throw at it and give you a nice response. Find fun in playiong with this simple API. 
 
-###The test suite
+### The test suite
 
 I did unittest on the app with several test cases. I created a small json file of a few time slots as payloads for the post requests To check against needed outputs. 
 
@@ -44,7 +44,7 @@ And see how the test was evaluated on your console. And at anypoint you can run
 
 	for the web process
 
-###the data folder	
+### the data folder	
 
 check the inputs.json in the data folder in the root directory to play around with these inputs. The holidays.json is for unittesting make sure sure these files are not edited in this folder so unit test cases will not assert wrong. the dumpdata.json inside is the dummy data from the api holidays saved for reference purpose as it can use for deletion retrieving 
 
@@ -61,11 +61,11 @@ The web rapping is in the root directory i used beautiful soup to achieve this t
 ### BONUS (GET REQUEST):
 The api support GET requests kindly provide a query parameter cc: as your country code to view all available holidays corresponding to specific country. E.g cc:us is for united natete while cc:ng is for nigeria ect.. i.e http://127.0.0.1:8000/api/schedules/?cc=us  .
 
-###-
+### -
 incase of any complaints of further upgrade, contact the developer @mallamsiddiq@gmail.com
 
 
-####thanks 
+#### thanks 
 
 akinyemi sodiq
 
