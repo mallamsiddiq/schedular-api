@@ -12,7 +12,7 @@ This app is built yet locally and made as a container with docker compose, and i
 
 Ensure docker is installed Simply run 
 
-docker-compose up
+	docker-compose up --build
 
 To spin up the container, and boom!!, your app is running on port http://127.0.0.1:8000/api/schedules on  your local machine.
 
