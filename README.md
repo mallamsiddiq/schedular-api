@@ -32,9 +32,11 @@ If you have many requests kindly wrapp in square brackets [] with comma separate
 
 I did unittest on the app with several test cases. I created a small json file of a few time slots as payloads for the post requests To check against needed outputs. 
 
-The docker-compose up ealer will spin up both the web and and the test but run only the testing unit kindly run 
+The docker-compose up ealier will spin up both the web and and the test but run only the testing unit kindly run 
 
-docker-compose up test 
+
+	docker-compose up test 
+	
 
 And see how the test was evaluated on your console. And at anypoint you can run 
 
