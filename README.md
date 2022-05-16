@@ -36,7 +36,7 @@ The docker-compose up ealier will spin up both the web and and the test but run 
 
 
 	docker-compose up test 
-	
+
 
 And see how the test was evaluated on your console. And at anypoint you can run 
 
@@ -67,7 +67,7 @@ The api support GET requests kindly provide a query parameter cc: as your countr
 incase of any complaints of further upgrade, contact the developer @mallamsiddiq@gmail.com
 
 
-#### thanks 
+thanks 
 
-akinyemi sodiq
+#### akinyemi sodiq
 
