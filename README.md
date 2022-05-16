@@ -3,7 +3,7 @@
 # Documentation on the app 
 
 ## Overview 
-This is a little app that takes your input of meeting time range and check simply check against the google support holidays in your provided country and returns all non clashing provided time slots.
+This is a little app that takes your input of meeting time ranges and simply checks against the google support holidays in your provided country and returns all non clashing provided time slots.
 
 
 ## Running the app 
@@ -12,7 +12,7 @@ This app is built yet locally and made as a container with docker compose, and i
 
 Ensure docker is installed Simply run 
 
-	docker-compose up
+docker-compose up
 
 To spin up the container, and boom!!, your app is running on port http://127.0.0.1:8000/api/schedules on  your local machine.
 
@@ -26,7 +26,7 @@ It takes a json format of the form:
 For the post request.
 Kindly note the double quotes:
 
-If you have many requests kindly wrapp in square brackets [] with comma separated. I have told this little boy to catch several types of inputs you throw at it and give you a nice response. Find fun in playiong with this simple API. 
+If you have many requests kindly wrapp in square brackets [] with comma separated. I have told this little boy to catch several types of inputs you throw at it and give you a nice response. Find fun in playing with this simple API. 
 
 ### The test suite
 
@@ -59,7 +59,7 @@ And also while i was implementing the view request logic i took into considerati
 The web rapping is in the root directory i used beautiful soup to achieve this task
 
 ### BONUS (GET REQUEST):
-The api support GET requests kindly provide a query parameter cc: as your country code to view all available holidays corresponding to specific country. E.g cc:us is for united natete while cc:ng is for nigeria ect.. i.e http://127.0.0.1:8000/api/schedules/?cc=us  .
+The api support GET requests kindly provide a query parameter cc: as your country code to view all available holidays corresponding to specific country. E.g cc:us is for the United states while cc:ng is for Nigeria ect.. i.e http://127.0.0.1:8000/api/schedules/?cc=us  .
 
 ### -
 incase of any complaints of further upgrade, contact the developer @mallamsiddiq@gmail.com
