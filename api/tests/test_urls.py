@@ -4,7 +4,7 @@ from django.test import SimpleTestCase
 
 
 class TestUrls(SimpleTestCase):
-	def test_urls_resolv(self):
+	def test_urls_resolv(self): # testing resolve match
 		url=reverse('schedules') 
 		print(resolve(url))
 		self.assertEquals(resolve(url).func.view_class,SchedulesView)

@@ -8,7 +8,7 @@ This is a little app that takes your input of meeting time ranges and simply che
 
 ## Running the app 
 
-This app is built yet locally and made as a container with docker compose, and it has hence abstracts environments’ conflicts. 
+This app is built yet locally and made as container images with docker compose, and it has hence abstracts environments’ conflicts. 
 
 Ensure docker is installed Simply run 
 
@@ -32,7 +32,7 @@ If you have many requests kindly wrapp in square brackets [] with comma separate
 
 I did unittest on the app with several test cases. I created a small json file of a few time slots as payloads for the post requests To check against needed outputs. 
 
-The docker-compose up ealier will spin up both the web and and the test but run only the testing unit kindly run 
+The “docker-compose up” earlier will spin up both the web and and the test but to run only the testing unit, kindly run :
 
 
 	docker-compose up test 
@@ -44,15 +44,16 @@ And see how the test was evaluated on your console. And at anypoint you can run
 
 	docker-compose logs web 
 
-	for the web process
+for the web process
+
 
 ### the data folder	
 
-check the inputs.json in the data folder in the root directory to play around with these inputs. The holidays.json is for unittesting make sure sure these files are not edited in this folder so unit test cases will not assert wrong. the dumpdata.json inside is the dummy data from the api holidays saved for reference purpose as it can use for deletion retrieving 
+check the inputs.json in the data folder in the root directory to play around with these inputs. Alongside is holidays.json both for unittesting make sure these files are not edited in this folder so unit test cases will not assert wrong. You can copy them out though. The dumpdata.json inside is the dummy data from the api holidays saved for reference purpose as it can use for deletion retrieving 
 
 ## Implementation choice:
 
-Efficiency and speed is always our topic in api building. The google url provided doesn’t provide an API endpoint for json response of the holidays so i have to webscrape the contents and this information are wrapped inside html containers with might change anytime so i have to save these items in our database as we won’t as well want to web scrape a third party url on every user request. 
+Efficiency and speed is always our topic in api building. The google url provided doesn’t provide an API endpoint for json response of the holidays so i have to webscrape the contents and this information are wrapped inside html containers which might change anytime so i have to save these items in our database as we won’t as well want to web scrape a third party url on every user request. So I choose saving to database to enhance speed, then rather work on database request efficiency instead of a third party endpoint we have no opinion on.
 
 Most requests from a single country will be almost the same as people from a country will share the same holidays hence this app is a good candidate for db caching of which i’ll use django memcache or redis in the future.
 
@@ -70,4 +71,5 @@ incase of any complaints of further upgrade, contact the developer @mallamsiddiq
 thanks 
 
 #### akinyemi sodiq
+
 
