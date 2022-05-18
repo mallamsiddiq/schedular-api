@@ -21,6 +21,16 @@ class TestUrls(TestCase):
 			"to": "2021-12-27T00:00:00Z",
 			"CC":"NG"
 			}
+		self.payload_3={
+			"from": "2021-12-26T00:00:00Z",
+			"to": "2021-12-26T00:00:00Z",
+			"CC":"NG"
+			}
+		self.payload_4={
+			"from": "2022-5-14T00:00:00Z",
+			"to": "2022-5-15T00:00:00Z",
+			"CC":"NG"
+			}
 		
 
 		with open('data/holidays.json', 'r') as file:
@@ -55,6 +65,10 @@ class TestUrls(TestCase):
                          "CC": "NG"
                          }]
              )
+
+	def test_weekends(self): 						# test scenerios of single inputs with weekends
+		self.load_data(self.payload_3,204)
+		self.load_data(self.payload_4,204)
 
 	def test_invalid_post(self):						# test invalid or empty inputs
 		self.load_data([],400)	
