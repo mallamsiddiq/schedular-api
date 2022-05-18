@@ -32,11 +32,3 @@ for i in (range(1,len(ps),2)):
 
 	for item in pi.split('\n'):
 		print(Holidays.objects.create(name=(item.split(':')[1]).strip('<br/>'),country_code=hi,date=(item.split(':')[0]).strip(' ')))
-
-	# dics=[{'name':(item.split(':')[1]).strip('<br/>'),'cc':hi, 'date':item.split(':')[0]} for item in pi.split('\n')]
-	# print(hi
-	# # print(pi.get_text())
-	# print(dics)
-# p1=str(ps[2])
-# # print(p1)
-# print((p1.split('\n')))

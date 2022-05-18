@@ -33,21 +33,21 @@ class TestUrls(TestCase):
 
 
 
-	def load_data(self,payload,code):
-		response = self.client.post(self.url,payload,content_type='application/json')
-		self.assertEquals(response.status_code,code)
+	def load_data(self,payload,code): 					# a generic common function to aid code DRYness
+		response = self.client.post(self.url,payload,content_type='application/json') #post a payload
+		self.assertEquals(response.status_code,code)  # assert status 
 		return response
 
 
-	def test_get(self):
-		response=self.client.get(self.url,{'cc':'nG'})
+	def test_get(self): 								# test on get requests
+		response=self.client.get(self.url,{'cc':'nG'})	# test on get for nigeria
 		self.assertEquals(response.status_code,200)
 		response=self.client.get(self.url)
-		self.assertEquals(response.status_code,204)  
+		self.assertEquals(response.status_code,204)  	# test on no cc provided
 
 	def test_mixed_post(self):
-		response=self.load_data(self.sched_slots,200)
-		self.assertJSONEqual(
+		response=self.load_data(self.sched_slots,200)   # test on multiple time slots 
+		self.assertJSONEqual(							# assert response content returned
             str(response.content, encoding='utf8'),
             [{
                         "fr": "2023-05-02T03:30:00Z",
@@ -56,12 +56,12 @@ class TestUrls(TestCase):
                          }]
              )
 
-	def test_invalid_post(self):
-		self.load_data([],400)
+	def test_invalid_post(self):						# test invalid or empty inputs
+		self.load_data([],400)	
 		self.load_data([{}],400)
 		self.load_data([{"random":"random"}],400)
 
-	def test_singles_post(self):
+	def test_singles_post(self): 						# test several scenerios of single inputs
 		self.load_data(self.payload_1,204)
 		self.load_data((self.payload_1)[0],204)
 		self.load_data(self.payload_2,200)
