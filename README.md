@@ -26,6 +26,10 @@ It takes a json format of the form:
 For the post request.
 Kindly note the double quotes:
 
+### Navigation
+
+the API at endpoint http://127.0.0.1:8000/api/schedules supports both GET and POST via HTTP request or through the django in-browser API ui as described but for ease of third party usage i have a integrated a nice easy to play with swagger-UI. Enjoy playing around with this api
+
 If you have many requests kindly wrapp in square brackets [] with comma separated. I have told this little boy to catch several types of inputs you throw at it and give you a nice response. Find fun in playing with this simple API. 
 
 ### The test suite
@@ -71,5 +75,6 @@ incase of any complaints of further upgrade, contact the developer @mallamsiddiq
 thanks 
 
 #### akinyemi sodiq
+
 
 
