@@ -5,7 +5,7 @@ import json
 from django.db.models import Q
 from django.utils.dateparse import parse_datetime
 
-from rest_framework import status
+from rest_framework import status,generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -21,12 +21,28 @@ def do_with_each_req(req,pass_req): 	# a funtion to evaluate if any holiday fall
 		if not Holidays.objects.filter(Q(country_code=req['CC'])&((Q(date__date__gte=fr.date()) & Q(date__date__lte=to.date())))).exists(): # check against database holidays
 			pass_req.append(req) 		# append slot to array if it passes all test
 
+from rest_framework.filters import BaseFilterBackend
+import coreapi
 
-class SchedulesView(APIView):
-	def get(self, request, format=None):
+class SimpleFilterBackend(BaseFilterBackend):
+    def get_schema_fields(self, view):
+        return [coreapi.Field(
+            name='cc',
+            location='query',
+            required=False,
+            type='string'
+        )]
+class SchedulesView(generics.ListCreateAPIView):
+	filter_backends = (SimpleFilterBackend,)
+	queryset = Holidays.objects.all()
+	def get_serializer_class(self):
+		if self.request.method == "GET":
+			return HolidaySerializer
+		return ScheduleSerializer
+	def list(self, request, *args, **kwargs):
 		query_cc=request.GET.get('cc') 
 		if request.GET.get('cc'):
-			snippets = Holidays.objects.filter(Q(country_code=query_cc.upper())) 	#filter holidays based on cc query params
+			snippets = self.queryset.filter(Q(country_code=query_cc.upper())) 	#filter holidays based on cc query params
 			if snippets.exists():
 				serializer = HolidaySerializer(snippets, many=True) 
 				return Response(serializer.data)
@@ -36,7 +52,25 @@ class SchedulesView(APIView):
 
 							in the format ==>> e.g. ?cc=US Fof united states""" , status=status.HTTP_204_NO_CONTENT)
 
-	def post(self, request, format=None):
+		# queryset = self.get_queryset()
+		# serializer = self.get_serializer(queryset, many=True)
+		# return Response(serializer.data)
+
+	# def get(self, request, format=None):
+	# 	query_cc=request.GET.get('cc') 
+		# if request.GET.get('cc'):
+		# 	snippets = self.queryset.filter(Q(country_code=query_cc.upper())) 	#filter holidays based on cc query params
+		# 	if snippets.exists():
+		# 		serializer = HolidaySerializer(snippets, many=True) 
+		# 		return Response(serializer.data)
+		# 	return Response('you ve provided a wrong value ==>> eg: CC=Us for united states',status=status.HTTP_204_NO_CONTENT)
+
+		# return Response("""kindly provide a lookup parameter "cc" to check all holidays basd on your contry contry code 
+
+		# 					in the format ==>> e.g. ?cc=US Fof united states""" , status=status.HTTP_204_NO_CONTENT)
+
+	def post(self, request,format=None, *args, **kwargs):
+		# serializer = ScheduleSerializer(data=request.data)
 		pass_req=[]
 		try:
 			if not request.data: # on empty requests
