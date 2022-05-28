@@ -1,6 +1,8 @@
 import numpy as np
 import json
 
+import coreapi
+
 
 from django.db.models import Q
 from django.utils.dateparse import parse_datetime
@@ -8,10 +10,12 @@ from django.utils.dateparse import parse_datetime
 from rest_framework import status,generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.filters import BaseFilterBackend
 
 from .serializers import HolidaySerializer,ScheduleSerializer
 from .models import Holidays
 
+#fuction to be called on each time slot
 def do_with_each_req(req,pass_req): 	# a funtion to evaluate if any holiday falls within the provided timt range
 	req['fr']=req['from'] 				# from is in the test input and i dont want to change it but it clahes with python built in from
 	fr=parse_datetime(req['from'])		# so i create a key 'fr' that conforms with our serializer key
@@ -21,17 +25,13 @@ def do_with_each_req(req,pass_req): 	# a funtion to evaluate if any holiday fall
 		if not Holidays.objects.filter(Q(country_code=req['CC'])&((Q(date__date__gte=fr.date()) & Q(date__date__lte=to.date())))).exists(): # check against database holidays
 			pass_req.append(req) 		# append slot to array if it passes all test
 
-from rest_framework.filters import BaseFilterBackend
-import coreapi
 
+#a class to make the 'cc' ry param field visisble to swagger docuentation UI
 class SimpleFilterBackend(BaseFilterBackend):
     def get_schema_fields(self, view):
-        return [coreapi.Field(
-            name='cc',
-            location='query',
-            required=False,
-            type='string'
-        )]
+        return [coreapi.Field( name='cc', location='query', required=False, type='string')]
+
+ #the main class
 class SchedulesView(generics.ListCreateAPIView):
 	filter_backends = (SimpleFilterBackend,)
 	queryset = Holidays.objects.all()
