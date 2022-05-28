@@ -72,7 +72,7 @@ The api support GET requests kindly provide a query parameter cc: as your countr
 incase of any complaints of further upgrade, contact the developer @mallamsiddiq@gmail.com
 
 
-thanks 
+thanks .
 
 #### akinyemi sodiq
 
