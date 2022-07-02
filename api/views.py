@@ -3,7 +3,6 @@ import json
 
 import coreapi
 
-
 from django.db.models import Q
 from django.utils.dateparse import parse_datetime
 
@@ -51,23 +50,6 @@ class SchedulesView(generics.ListCreateAPIView):
 		return Response("""kindly provide a lookup parameter "cc" to check all holidays basd on your contry contry code 
 
 							in the format ==>> e.g. ?cc=US Fof united states""" , status=status.HTTP_204_NO_CONTENT)
-
-		# queryset = self.get_queryset()
-		# serializer = self.get_serializer(queryset, many=True)
-		# return Response(serializer.data)
-
-	# def get(self, request, format=None):
-	# 	query_cc=request.GET.get('cc') 
-		# if request.GET.get('cc'):
-		# 	snippets = self.queryset.filter(Q(country_code=query_cc.upper())) 	#filter holidays based on cc query params
-		# 	if snippets.exists():
-		# 		serializer = HolidaySerializer(snippets, many=True) 
-		# 		return Response(serializer.data)
-		# 	return Response('you ve provided a wrong value ==>> eg: CC=Us for united states',status=status.HTTP_204_NO_CONTENT)
-
-		# return Response("""kindly provide a lookup parameter "cc" to check all holidays basd on your contry contry code 
-
-		# 					in the format ==>> e.g. ?cc=US Fof united states""" , status=status.HTTP_204_NO_CONTENT)
 
 	def post(self, request,format=None, *args, **kwargs):
 		# serializer = ScheduleSerializer(data=request.data)
